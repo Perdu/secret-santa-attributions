@@ -5,18 +5,6 @@ import sys as trans
 import random
 import csv
 
-# not used, does not generate strongly connected graphs
-# i.e. A -> B -> C -> A is possible
-def non_strongly_connected():
-    left=people.copy()
-    for p in people:
-        choice=random.choice(tuple(left))
-        # Make sure nobody gets attributed to themselves
-        while choice == p:
-            choice=random.choice(tuple(left))
-        print("%s -> %s" % (p, choice))
-        left.remove(choice)
-
 def fill_people():
     people=set()
     with open('people.csv', newline='') as csvfile:
