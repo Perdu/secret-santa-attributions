@@ -36,19 +36,26 @@ def print_and_save_results(tuples):
 
 def create_tuples(already_done):
     people=fill_people()
-    left=people.copy()
-    first=random.choice(tuple(left))
-    choice=first
-    tuples=[]
-    left.remove(choice)
-    while len(left) > 0:
-        prev=choice
-        choice=random.choice(tuple(left))
-        while("%s-%s" %(prev, choice) in already_done):
-            choice=random.choice(tuple(left))
+    ok=False
+    while not ok:
+        tuples=[]
+        left=people.copy()
+        first=random.choice(tuple(left))
+        choice=first
         left.remove(choice)
-        tuples.append((prev, choice))
-    tuples.append((choice, first))
+        while len(left) > 0:
+            prev=choice
+            choice=random.choice(tuple(left))
+            while("%s-%s" %(prev, choice) in already_done):
+                choice=random.choice(tuple(left))
+            left.remove(choice)
+            tuples.append((prev, choice))
+        if "%s-%s" %(choice, first) not in already_done:
+            # Oops, we can't close the loop because the last pairing has
+            # already been done. We have to start over.
+            tuples.append((choice, first))
+            ok=True
+            print("Ending the loop failed, starting over.")
     return tuples
 
 def main():
