@@ -6,18 +6,18 @@ import random
 import csv
 import os
 
-TUPLE_FILE='tuples.csv'
-PEOPLE_FILE='people.csv'
+TUPLE_FILE = 'tuples.csv'
+PEOPLE_FILE = 'people.csv'
 
 def fill_people():
-    people=set()
+    people = set()
     with open(PEOPLE_FILE, newline='') as csvfile:
         for row in csvfile:
             people.add(row.strip())
     return people
 
 def get_existing_tuples():
-    already_done=set()
+    already_done = set()
     if os.path.isfile(TUPLE_FILE):
         with open(TUPLE_FILE) as csvfile:
             reader = csv.reader(csvfile)
@@ -35,14 +35,14 @@ def print_and_save_results(tuples):
             writer.writerow(t)
 
 def tuples_loop(people, already_done):
-    tuples=[]
-    left=people.copy()
-    first=random.choice(tuple(left))
-    choice=first
+    tuples = []
+    left = people.copy()
+    first = random.choice(tuple(left))
+    choice = first
     left.remove(choice)
     while len(left) > 0:
-        prev=choice
-        choice=random.choice(tuple(left))
+        prev = choice
+        choice = random.choice(tuple(left))
         not_tested=left.copy()
         while ("%s-%s" % (prev, choice) in already_done) and len(not_tested) > 0:
             choice=random.choice(tuple(left))
