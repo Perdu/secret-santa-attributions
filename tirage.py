@@ -13,7 +13,7 @@ args = None
 
 def parse_command_line():
     global args
-    parser = argparse.ArgumentParser(description="Make random attributions of people for a secret santa-style gift exchange. Results will always be a loop (fully connected graph) and no similar attribution will be made twice.\nPlease indicate people in file %s.\nPrevious attributions are stored in file %s." % (PEOPLE_FILE, TUPLE_FILE))
+    parser = argparse.ArgumentParser(description="Make random attributions of people for a secret santa-style gift exchange. Results will always be a loop (fully connected graph) and no similar attribution will be made twice in successive runs.\nPlease indicate people in file %s.\nPrevious attributions are stored in file %s." % (PEOPLE_FILE, TUPLE_FILE))
     group_main = parser.add_argument_group('Options')
     group_main.add_argument('-q', '--quiet', action='store_const', const=True, help='Display results only, no failure messages.')
     group_main.add_argument('-m', '--max-retries', action='store', type=int, default=10000, help='Max number of attempts to find a solution.')

@@ -1,6 +1,6 @@
 # Secret santa attributions
 
-Make random attributions of people for a secret santa-style gift exchange. Results will always be a loop (fully connected graph) and no similar attribution will be made twice.
+Make random attributions of people for a secret santa-style gift exchange. Results will always be a loop (fully connected graph) and no similar attribution will be made twice in successive runs.
 
 # Run
 
@@ -12,6 +12,7 @@ Attributions are stored in `tuples.csv` and similar ones will not be made in sub
 
 # Example run
 
+`python tirage.py`
 ```
 Elsa -> Doug
 Doug -> Casey
