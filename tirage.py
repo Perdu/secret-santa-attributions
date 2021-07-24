@@ -21,6 +21,9 @@ def parse_command_line():
 
 def fill_people():
     people = set()
+    if not os.path.isfile(PEOPLE_FILE):
+        print("Please create file %s. Indicate one person per line." % PEOPLE_FILE)
+        trans.exit(1)
     with open(PEOPLE_FILE, newline='') as csvfile:
         for row in csvfile:
             people.add(row.strip())
